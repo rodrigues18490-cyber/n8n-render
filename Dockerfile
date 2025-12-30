@@ -2,8 +2,9 @@ FROM n8nio/n8n:latest
 
 USER root
 
-# Instala ffmpeg
-RUN apk update && apk add --no-cache ffmpeg
+RUN apt-get update \
+ && apt-get install -y ffmpeg \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-# Volta para o usuário do n8n
 USER node
